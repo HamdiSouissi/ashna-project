@@ -1,0 +1,11 @@
+# LeadFinder - racine. Tout est redirige vers /public, dossiers sensibles interdits.
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Blocage des dossiers sensibles
+    RewriteRule ^(app|config|database|storage)(/|$) - [F,L]
+
+    # Redirection vers /public sauf si l'URL cible deja /public
+    RewriteRule ^(?!public/)(.*)$ public/$1 [L]
+</IfModule>
